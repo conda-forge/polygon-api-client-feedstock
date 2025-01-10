@@ -14,15 +14,15 @@ build:
   script: {{ PYTHON }} -m pip install . -vv
   script_env:
     - VERSION={{ version }}
-  number: 0
+  number: 1
 
 requirements:
   host:
     - pip
-    - python >=3.8
+    - python {{ python_min }}
     - poetry
   run:
-    - python >=3.8
+    - python >={{ python_min }}
     - certifi >=2022.5.18,<2024
     - setuptools
     - urllib3 >=1.26.9,<2
@@ -33,6 +33,7 @@ test:
     - polygon
   requires:
     - pip
+    - python {{ python_min }}
   commands:
     - pip check
 
